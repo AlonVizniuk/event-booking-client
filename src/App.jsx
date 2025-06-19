@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Events from "./pages/Events";
 import AdminDashboard from "./pages/AdminDashboard";
 import BookEvent from "./pages/BookEvent";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -17,8 +18,18 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/events" element={<Events />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/book/:eventId" element={<BookEvent />} />
+            <Route path="/admin" element={
+                <ProtectedRoute requiredRole="admin">
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/book/:eventId" element={
+                <ProtectedRoute>
+                  <BookEvent />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </div>
       </div>
