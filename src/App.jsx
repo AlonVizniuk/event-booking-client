@@ -1,10 +1,28 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Events from "./pages/Events";
+import AdminDashboard from "./pages/AdminDashboard";
+import BookEvent from "./pages/BookEvent";
+
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <h1 className="text-3xl font-bold text-blue-600">
-        Event Booking System
-      </h1>
-    </div>
+    <Router>
+      <div className="min-h-screen bg-gray-100">
+        <Navbar />
+        <div className="p-4">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/book/:eventId" element={<BookEvent />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
